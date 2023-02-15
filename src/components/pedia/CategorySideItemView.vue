@@ -13,9 +13,9 @@ const image_url = cld.image(param.category.image_url)
   <div class="h-full w-full">
     <div class="card sm:card-side bg-white my-2 cursor-pointer rounded-md">
 
-      <div class="sm:w-1/5 aspect-square">
+      <figure class="sm:w-1/5 aspect-square rounded-2xl">
         <AdvancedImage v-if="param.category.has_image" class="img" :cld-img="image_url"/>
-      </div>
+      </figure>
 
       <div class="card-body p-4 w-4/5">
         <p class="card-title line-clamp-1">{{ param.category.title }}</p>
@@ -28,3 +28,9 @@ const image_url = cld.image(param.category.image_url)
   </div>
 
 </template>
+
+<style scoped>
+.img {
+  height: theme('height.full');
+}
+</style>

@@ -6,7 +6,7 @@ const router = useRouter()
 </script>
 <template>
   <div class="h-screen w-full">
-    <div class=" grid-cols-3 relative left-0 bottom-0 bg-white hidden md:grid">
+    <div class=" grid-cols-3 relative left-0 bottom-0 bg-white md:grid">
       <div class="btn rounded-none rounded-sm my-2  flex w-full place-items-center drop-shadow-md"
            @click="router.push('/feature/pedia')">
         <p class="w-full text-center ">茶道知識</p>

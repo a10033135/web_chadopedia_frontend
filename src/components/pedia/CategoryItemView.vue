@@ -12,7 +12,9 @@ const image_url = cld.image(param.category.image_url)
   <!--  主頻道列表  -->
   <div class="h-full w-full">
     <div class="card bg-white h-full my-2 cursor-pointer rounded-2xl ">
-      <AdvancedImage v-if="param.category.has_image" class="img" :cld-img="image_url"/>
+      <figure>
+        <AdvancedImage v-if="param.category.has_image" class="img" :cld-img="image_url"/>
+      </figure>
 
       <div class="card-body p-4">
         <p class="card-title ">{{ param.category.title }}</p>
@@ -25,3 +27,9 @@ const image_url = cld.image(param.category.image_url)
   </div>
 
 </template>
+
+<style scoped>
+.img {
+  width: theme('width.full');
+}
+</style>

@@ -11,12 +11,4 @@ export default defineConfig({
             '@': fileURLToPath(new URL('./src/', import.meta.url))
         }
     },
-    build: {
-        rollupOptions: {
-            input: {
-                main: './index.html', // 主頁面
-                home: './home.html'
-            }
-        }
-    }
 })

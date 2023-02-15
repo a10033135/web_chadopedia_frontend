@@ -8,6 +8,11 @@ import theme_utils from "@/utils/theme_utils";
 const theme = useThemeStore()
 const state = reactive({theme_mode: theme.getTheme})
 
+const router = useRouter()
+
+function onClick() {
+  router.push('/pedia')
+}
 
 </script>
 
@@ -24,13 +29,12 @@ const state = reactive({theme_mode: theme.getTheme})
         </button>
       </div>
       <div class="flex-1">
-        <a class="btn btn-ghost normal-case text-xl">茶道知識</a>
+        <a class="btn btn-ghost normal-case text-xl" @click="onClick">茶道知識</a>
       </div>
     </div>
 
 
-    <router-view />
-
+    <router-view class=" px-12 md:px-24 lg:px-48"/>
 
 
   </div>

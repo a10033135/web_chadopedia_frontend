@@ -6,7 +6,7 @@ import router from './router'
 
 import './assets/style.css'
 
-
+import 'preline'
 
 const app = createApp(App)
 
