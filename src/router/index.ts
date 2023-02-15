@@ -2,8 +2,6 @@ import {createRouter, createWebHistory} from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import FeatureView from "@/views/feature/FeatureView.vue";
 import PediaView from "@/views/feature/pedia/PediaView.vue";
-import PediaContentView from "@/views/feature/pedia/PediaContentView.vue";
-import ContentDetailView from "@/views/feature/pedia/ContentDetailView.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -14,23 +12,16 @@ const router = createRouter({
             component: HomeView,
             children: [
                 {
-                    path: '/feature',
-                    component: FeatureView
+                    path: 'feature',
+                    component: FeatureView,
+                    children: [
+                        {
+                            path: 'pedia',
+                            name: 'pedia',
+                            component: PediaView
+                        }
+                    ]
                 },
-                {
-                    path: '/pedia/:id',
-                    component: PediaView,
-                    children: []
-                },
-                {
-                    path: '/pedia/:id/:sub_id',
-                    component: PediaContentView
-                }
-                ,
-                {
-                    path: '/content/:id',
-                    component: ContentDetailView
-                }
             ]
         },
     ]

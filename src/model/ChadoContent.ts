@@ -38,7 +38,7 @@ export class ChadoContent {
     }
 }
 
-export function doc2Content(doc: DocumentSnapshot) {
+export function doc2ChadoContent(doc: DocumentSnapshot): ChadoContent {
     const data = doc.data() ?? []
     const id = doc.id ?? ''
     const title = data['title'] ?? ''
@@ -52,7 +52,7 @@ export function doc2Content(doc: DocumentSnapshot) {
     return new ChadoContent(id, title, desc, enable, has_image, main_categories, sub_categories, create_time, update_time)
 }
 
-export function doc2ChadoContent(doc: QueryDocumentSnapshot): ChadoContent {
+export function docs2ChadoContent(doc: QueryDocumentSnapshot): ChadoContent {
     const data = doc.data()
     const id = doc.id ?? ''
     const title = data['title'] ?? ''

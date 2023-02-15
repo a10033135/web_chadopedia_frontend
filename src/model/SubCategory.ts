@@ -1,12 +1,14 @@
-import {QueryDocumentSnapshot, Timestamp} from "@firebase/firestore";
+import {DocumentSnapshot, QueryDocumentSnapshot, Timestamp} from "@firebase/firestore";
 
 export class SubCategory {
 
     id: string = '';
+
     main_cate_id: string = '';
     title: string = '';
     desc: string = '';
     enable: boolean = false;
+
     sort: number = 0
     has_image: boolean = false;
     create_time: number = 0;
@@ -29,7 +31,22 @@ export class SubCategory {
     }
 }
 
-export function doc2SubCategory(doc: QueryDocumentSnapshot): SubCategory {
+export function doc2SubCategory(doc: DocumentSnapshot): SubCategory {
+    const data = doc.data() ?? []
+    const id = doc.id ?? ''
+    const main_cate_id = data['main_cate_id'] ?? ''
+    const title = data['title'] ?? ''
+    const desc = data['desc'] ?? ''
+    const enable = data['enable'] ?? ''
+    const sort = data['sort'] ?? 0
+    const has_image = data['has_image'] ?? false
+    const create_time = (data['create_time'] as Timestamp).seconds ?? Timestamp.now().seconds
+    const update_time = (data['update_time'] as Timestamp).seconds ?? Timestamp.now().seconds
+    return new SubCategory(id, main_cate_id, title, desc, enable, sort, has_image, create_time, update_time)
+}
+
+
+export function docs2SubCategory(doc: QueryDocumentSnapshot): SubCategory {
     const data = doc.data()
     const id = doc.id ?? ''
     const main_cate_id = data['main_cate_id'] ?? ''

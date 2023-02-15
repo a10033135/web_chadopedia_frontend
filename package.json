@@ -11,6 +11,9 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@cloudinary/url-gen": "^1.9.0",
+    "@cloudinary/vue": "^1.10.0",
+    "@tailwindcss/line-clamp": "^0.4.2",
     "daisyui": "^2.50.0",
     "firebase": "^9.17.1",
     "pinia": "^2.0.28",

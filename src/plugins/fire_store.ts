@@ -16,8 +16,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 const firestore = getFirestore(app)
-// if (!firestore_data._settingsFrozen) {
-//     connectFirestoreEmulator(firestore_data, '127.0.0.1', 8080)
+// if (!firestore._settingsFrozen) {
+    // connectFirestoreEmulator(firestore, '127.0.0.1', 8080)
 // }
 
 export {firestore};

@@ -3,28 +3,35 @@
 import {reactive} from "vue";
 import {useThemeStore} from "@/stores/theme";
 import {useRouter} from "vue-router";
+import theme_utils from "@/utils/theme_utils";
 
 const theme = useThemeStore()
 const state = reactive({theme_mode: theme.getTheme})
 
+
 </script>
 
 <template>
-  <div class="w-screen h-screen bg-black hidden md:block">
+  <div class="h-screen">
     <!-- Header   -->
-    <div class="h-48 w-screen bg-green-100">
-
+    <div class="navbar bg-base-200">
+      <div class="flex-none">
+        <button class="btn btn-square btn-ghost">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+               class="inline-block w-5 h-5 stroke-current">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="flex-1">
+        <a class="btn btn-ghost normal-case text-xl">茶道知識</a>
+      </div>
     </div>
-    <suspense>
 
-      <router-view #default>
 
-      </router-view>
-    </suspense>
+    <router-view />
 
-  </div>
-  <div class="w-screen h-screen bg-blue-200 block md:hidden">
+
 
   </div>
-
 </template>
