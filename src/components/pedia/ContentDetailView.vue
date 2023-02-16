@@ -30,7 +30,7 @@ const state = reactive({
 </script>
 <template>
   <div class="lg:flex" v-if="chado_content">
-    <div class="basis-1/4">
+    <div class="basis-1/3">
       <div v-if="main_category||sub_category" class="xl:basis-1/3">
         <div v-if="main_category" class="py-4">
           <p class="text-2xl font-bold"> {{ props.main_category.title }} </p>
@@ -43,9 +43,7 @@ const state = reactive({
         </div>
       </div>
     </div>
-    <div class="basis-1/4"></div>
-
-    <div class="basis-2/4 py-12 lg:py-0">
+    <div class="basis-2/3 py-3 lg:py-0">
       <p class="font-bold lg:text-4xl text-2xl text-start lg:text-center">{{ (props.chado_content.title) }}</p>
       <p class="text-xl lg:px-12 text-start lg:text-center lg:py-12 py-2 block">{{ props.chado_content.desc }}</p>
       <AdvancedImage v-if="chado_content.has_image" class="img" :cld-img="state.image_url"/>

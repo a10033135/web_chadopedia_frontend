@@ -2,9 +2,12 @@
 
 import {AdvancedImage} from "@cloudinary/vue";
 import {cld} from "@/plugins/cloudinary";
+import { thumbnail } from "@cloudinary/url-gen/actions/resize";
+import { focusOn } from "@cloudinary/url-gen/qualifiers/gravity";
+import { FocusOn } from "@cloudinary/url-gen/qualifiers/focusOn";
 
 const param = defineProps(['category'])
-const image_url = cld.image(param.category.image_url)
+const image_url = cld.image(param.category.image_url).resize(thumbnail().width(500).height(500).gravity(focusOn(FocusOn.face())))
 
 </script>
 

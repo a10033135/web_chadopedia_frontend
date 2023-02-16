@@ -11,7 +11,12 @@ const router = createRouter({
             component: async () => await import('../views/HomeView.vue'),
             children: [
                 {
-                    path: 'pedia',
+                    path: '',
+                    name: 'home-default',
+                    component: async () => await import('../views/feature/PediaView.vue')
+                },
+                {
+                    path: '/pedia',
                     name: 'pedia',
                     component: async () => await import('../views/feature/PediaView.vue')
                 },

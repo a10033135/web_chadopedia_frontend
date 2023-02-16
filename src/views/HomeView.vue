@@ -47,7 +47,7 @@ const nav_router: { name: string, url: string }[] = [
       </div>
     </div>
 
-    <router-view class="router-view-height px-12 md:px-24 lg:px-48 2xl:px-72 overflow-x-auto"/>
+    <router-view class="router-view-height px-6 md:px-24 lg:px-48 2xl:px-96 xl:mx-12 overflow-x-auto"/>
 
     <div v-if="menu_state.is_open" :class="{'ease-in duration-300':menu_state.is_open}">
 
