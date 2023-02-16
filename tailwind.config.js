@@ -6,9 +6,14 @@ module.exports = {
         'node_modules/preline/dist/*.js',
     ],
     value: {
-        extend: {},
+        extend: {
+            spacing: {
+                '64': '32rem'
+            }
+        },
     },
-    plugins: [require('daisyui'),require('@tailwindcss/line-clamp'),require('preline/plugin')],
+    plugins: [require('daisyui'), require('@tailwindcss/line-clamp'), require('preline/plugin')],
     daisyui: {
-        themes: ['garden','forest']
-    }}
+        themes: ['garden', 'forest']
+    }
+}

@@ -6,12 +6,13 @@ import {cld} from "@/plugins/cloudinary";
 const param = defineProps(['category'])
 const image_url = cld.image(param.category.image_url)
 
+
 </script>
 
 <template>
   <!--  主頻道列表  -->
-  <div class="h-full w-full">
-    <div class="card sm:card-side bg-white my-2 cursor-pointer rounded-md">
+  <div class="w-full">
+    <div class="card sm:card-side bg-white my-2 cursor-pointer rounded-2xl drop-shadow-md">
 
       <figure class="sm:w-1/5 aspect-square rounded-2xl">
         <AdvancedImage v-if="param.category.has_image" class="img" :cld-img="image_url"/>
