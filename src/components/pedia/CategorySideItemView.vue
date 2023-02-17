@@ -15,7 +15,7 @@ const image_url = cld.image(param.category.image_url).resize(thumbnail().width(2
 <template>
   <!--  主頻道列表  -->
   <div class="w-full">
-    <div class="card card-side bg-white cursor-pointer rounded-2xl drop-shadow-md">
+    <div class="card sm:card-side bg-white cursor-pointer rounded-2xl drop-shadow-md">
 
       <figure class="sm:w-1/2 aspect-square ">
         <AdvancedImage v-if="param.category.has_image" class="img" :cld-img="image_url"/>

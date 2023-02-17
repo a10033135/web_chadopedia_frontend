@@ -103,17 +103,17 @@ async function update_query_for_show(url_query: { main_id: string | null, sub_id
   } else if (url_query.main_id && url_query.sub_id) {
     category_state.show_main_categories = [];
     category_state.show_sub_categories = [];
-    const chado_contents = await getDocs(query(query(collection(firestore, chado_content_name), where("enable", "==", true)), where("sub_categories", "array-contains", url_query.sub_id)));
+    const chado_contents = await getDocs(query(query(query(query(collection(firestore, chado_content_name), where("enable", "==", true)), where("sub_categories", "array-contains", url_query.sub_id)), orderBy("update_time", "asc")), orderBy("has_image", "asc")));
     category_state.show_chado_contents = chado_contents.docs.map(docs2MainCategory).map(value => {
       return new CategoryItem(value.id, value.title, value.desc, `${genChadoContentPath(value.id)}`, value.has_image);
     });
   } else if (url_query.main_id) {
     category_state.show_main_categories = [];
-    const chado_contents = await getDocs(query(query(collection(firestore, chado_content_name), where("enable", "==", true)), where("main_categories", "array-contains", url_query.main_id)));
+    const chado_contents = await getDocs(query(query(query(query(collection(firestore, chado_content_name), where("enable", "==", true)), where("main_categories", "array-contains", url_query.main_id)), orderBy("update_time", "asc")), orderBy("has_image", "asc")));
     category_state.show_chado_contents = chado_contents.docs.map(doc2ChadoContent).map(value => {
       return new CategoryItem(value.id, value.title, value.desc, `${genChadoContentPath(value.id)}`, value.has_image);
     });
-    const sub_categories = await getDocs(query(query(query(collection(firestore, sub_category_name), where("enable", "==", true)), orderBy("sort", "asc")), where("main_cate_id", "==", url_query.main_id)));
+    const sub_categories = await getDocs(query(query(query(query(collection(firestore, sub_category_name), where("enable", "==", true)), orderBy("sort", "asc")), where("main_cate_id", "==", url_query.main_id)), orderBy("has_image", "asc")));
     category_state.show_sub_categories = sub_categories.docs.map(docs2SubCategory).map(value => {
       return new CategoryItem(value.id, value.title, value.desc, `${genSubCategoryPath(value.id)}`, value.has_image);
     });
@@ -148,23 +148,27 @@ function back_to_sub_category() {
 </script>
 
 <template>
-  <div class="lg:static ">
+<!--  <img class="bg absolute object-cover opacity-30 z-0"-->
+<!--       src="https://res.cloudinary.com/di0d7y9qa/image/upload/v1676620372/pedia_background_r2nel9.jpg">-->
+
+  <div class="lg:static px-12 lg:px-24 2xl:px-36 ">
     <div v-if="content_detail_state.main_category"
-         class="absolute md:block breadcrumbs text-md py-4">
+         class="absolute md:block breadcrumbs text-md py-4 bg-base-100 w-full z-10 lg:w-fit lg:bg-transparent">
       <ul>
         <li>
-          <p class="badge badge-md lg:badge-lg hover:badge-outline cursor-pointer rounded-md" @click="back_to_pedia">
+          <p class="hover:underline underline-offset-2 hover:text-base-300 cursor-pointer rounded-md"
+             @click="back_to_pedia">
             回到首頁
           </p>
         </li>
         <li v-if="content_detail_state.sub_category&&content_detail_state.main_category">
-          <p class="badge badge-md lg:badge-lg hover:badge-outline cursor-pointer rounded-md"
+          <p class="hover:underline underline-offset-2 hover:text-base-300 cursor-pointer rounded-md"
              @click="back_to_main_category">
             {{ content_detail_state.main_category?.title }}
           </p>
         </li>
         <li v-if="content_detail_state.chado_content&&content_detail_state.sub_category">
-          <p class="badge badge-md lg:badge-lg hover:badge-outline cursor-pointer rounded-md"
+          <p class="hover:underline underline-offset-2 hover:text-base-300 cursor-pointer rounded-md"
              @click="back_to_sub_category">
             {{ content_detail_state.sub_category?.title }}
           </p>
@@ -174,7 +178,7 @@ function back_to_sub_category() {
 
 
     <categories-view
-      class="pt-12 lg:pt-18"
+      class="pt-16 lg:pt-20"
       :class="{
             'block':!component_state.is_show_content_detail,
             'hidden':component_state.is_show_content_detail,
@@ -189,7 +193,7 @@ function back_to_sub_category() {
       :sub_category="content_detail_state.sub_category"
     />
     <content-detail-view
-      class="pt-12 lg:pt-18"
+      class="pt-16 lg:pt-20"
       :class="{
             'block':component_state.is_show_content_detail,
             'hidden':!component_state.is_show_content_detail
@@ -201,3 +205,7 @@ function back_to_sub_category() {
     />
   </div>
 </template>
+
+<style>
+
+</style>

@@ -34,27 +34,30 @@ const props = defineProps<{
         </div>
       </div>
 
-      <div class="xl:basis-3/5 ">
+      <div >
         <div v-if="props.main_categories.length > 0"
-             class="grid 2xl:grid-cols-3 lg:grid-cols-2 sm:grid-cols-2 grid-cols-1 gap-4 pb-2">
+             class="grid 2xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8 pb-2">
           <category-item-view
+            class="transition ease-in-out delay-150 hover:scale-110 duration-300"
               v-for="item in props.main_categories"
               :category="item"
               @click="$emit('click_main_category',item.id)" />
         </div>
 
         <div v-if="props.chado_contents.length > 0"
-             class="grid 2xl:grid-cols-2 lg:grid-cols-2 sm:grid-cols-2 grid-cols-1 gap-4 py-2">
-          <category-item-view
-              v-for="item in props.chado_contents"
+             class="xl:basis-3/5 grid xl:grid-cols-1 gap-4">
+          <category-side-item-view
+            class="transition ease-in-out delay-150 hover:scale-110 duration-300"
+            v-for="item in props.chado_contents"
               :category="item"
               @click="$emit('click_chado_content',item.id)" />
         </div>
 
         <div v-if="props.sub_categories.length > 0"
-             class="grid xl:grid-cols-1 gap-4">
+             class="xl:basis-3/5 grid xl:grid-cols-1 gap-4 mt-4">
           <category-side-item-view
-              v-for="item in props.sub_categories"
+            class="transition ease-in-out delay-150 hover:scale-110 duration-300"
+            v-for="item in props.sub_categories"
               :category="item"
               @click="$emit('click_sub_category',item.id)" />
           <div class="h-12"/>
