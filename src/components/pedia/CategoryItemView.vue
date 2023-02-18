@@ -14,14 +14,14 @@ const image_url = cld.image(param.category.image_url).resize(thumbnail().width(5
 <template>
   <!--  主頻道列表  -->
   <div class="h-full drop-shadow-md">
-    <div class="card bg-white h-full my-2 cursor-pointer rounded-2xl  ">
+    <div class="  h-full my-2 cursor-pointer   ">
       <figure>
         <AdvancedImage v-if="param.category.has_image" class="img" :cld-img="image_url"/>
       </figure>
 
-      <div class="card-body p-4">
-        <p class="card-title ">{{ param.category.title }}</p>
-        <p class="text-md">{{ param.category.desc }}</p>
+      <div>
+        <p class="text-lg font-bold pt-4">{{ param.category.title }}</p>
+        <p class="text-md pt-1">{{ param.category.desc }}</p>
 
       </div>
 

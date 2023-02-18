@@ -43,9 +43,9 @@ const state = reactive({
         </div>
       </div>
     </div>
-    <div class="basis-2/3 py-3 lg:py-0">
-      <p class="font-bold lg:text-4xl text-2xl text-start lg:text-center">{{ (props.chado_content.title) }}</p>
-      <p class="text-xl lg:px-12 text-start lg:text-center lg:py-12 py-2 block">{{ props.chado_content.desc }}</p>
+    <div class="basis-2/3 py-3 lg:px-24 lg:py-0">
+      <p class="font-bold lg:text-4xl text-2xl text-start ">{{ (props.chado_content.title) }}</p>
+      <p class="text-xl  text-start lg:py-12 py-2 block text-start ">{{ props.chado_content.desc }}</p>
       <AdvancedImage v-if="chado_content.has_image" class="img" :cld-img="state.image_url"/>
     </div>
   </div>

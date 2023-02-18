@@ -1,21 +1,22 @@
 <script setup lang="ts">
 
-import { reactive, watch } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import {reactive, watch} from "vue";
+import {useRoute, useRouter} from "vue-router";
 
 import CategoriesView from "@/components/pedia/CategoriesView.vue";
 import ContentDetailView from "@/components/pedia/ContentDetailView.vue";
-import { CategoryItem } from "@/model/CategoryItem";
-import { genChadoContentPath, genMainCategoryPath, genSubCategoryPath } from "@/utils/cloudinary_utils";
-import { collection, getDocs, query, where, orderBy, getDoc, doc } from "@firebase/firestore";
-import { chado_content_name, main_category_name, sub_category_name } from "@/utils/firestore_utils";
-import { firestore } from "@/plugins/fire_store";
-import type { ChadoContent } from "@/model/ChadoContent";
-import { doc2ChadoContent } from "@/model/ChadoContent";
-import type { SubCategory } from "@/model/SubCategory";
-import { doc2SubCategory, docs2SubCategory } from "@/model/SubCategory";
-import type { MainCategory } from "@/model/MainCategory";
-import { doc2MainCategory, docs2MainCategory } from "@/model/MainCategory";
+import {CategoryItem} from "@/model/CategoryItem";
+import {genChadoContentPath, genMainCategoryPath, genSubCategoryPath} from "@/utils/cloudinary_utils";
+import {collection, getDocs, query, where, orderBy, getDoc, doc} from "@firebase/firestore";
+import {chado_content_name, main_category_name, sub_category_name} from "@/utils/firestore_utils";
+import {firestore} from "@/plugins/fire_store";
+import type {ChadoContent} from "@/model/ChadoContent";
+import {doc2ChadoContent} from "@/model/ChadoContent";
+import type {SubCategory} from "@/model/SubCategory";
+import {doc2SubCategory, docs2SubCategory} from "@/model/SubCategory";
+import type {MainCategory} from "@/model/MainCategory";
+import {doc2MainCategory, docs2MainCategory} from "@/model/MainCategory";
+import FooterView from "@/components/FooterView.vue";
 
 const route = useRoute();
 const router = useRouter();
@@ -28,7 +29,7 @@ watch(route, route => {
     content_id: route.query.content_id as string
   });
 
-}, { deep: true });
+}, {deep: true});
 
 const category_state = reactive({
   main_categories: [] as MainCategory[],
@@ -52,18 +53,18 @@ const component_state = reactive({
 update_query_for_show(route.query as { main_id: string, sub_id: string, content_id: string });
 
 function click_main_category(main_id: string) {
-  router.push({ path: "pedia", query: { "main_id": main_id } });
+  router.push({path: "pedia", query: {"main_id": main_id}});
 }
 
 function click_sub_category(sub_id: string) {
   const main_id = route.query.main_id as string;
-  router.push({ path: "pedia", query: { "main_id": main_id, "sub_id": sub_id } });
+  router.push({path: "pedia", query: {"main_id": main_id, "sub_id": sub_id}});
 }
 
 function click_chado_content(content_id: string) {
   const main_id = route.query.main_id as string;
   const sub_id = route.query.sub_id as string;
-  router.push({ path: "pedia", query: { "main_id": main_id, "sub_id": sub_id, "content_id": content_id } });
+  router.push({path: "pedia", query: {"main_id": main_id, "sub_id": sub_id, "content_id": content_id}});
 }
 
 
@@ -118,7 +119,7 @@ async function update_query_for_show(url_query: { main_id: string | null, sub_id
       return new CategoryItem(value.id, value.title, value.desc, `${genSubCategoryPath(value.id)}`, value.has_image);
     });
   } else {
-    await router.push({ path: "pedia" });
+    await router.push({path: "pedia"});
   }
 }
 
@@ -129,7 +130,7 @@ function back_to_pedia() {
 function back_to_main_category() {
   if (content_detail_state.main_category) {
     router.push({
-      path: "pedia", query: { "main_id": content_detail_state.main_category.id }
+      path: "pedia", query: {"main_id": content_detail_state.main_category.id}
     });
   }
 }
@@ -148,27 +149,26 @@ function back_to_sub_category() {
 </script>
 
 <template>
-<!--  <img class="bg absolute object-cover opacity-30 z-0"-->
-<!--       src="https://res.cloudinary.com/di0d7y9qa/image/upload/v1676620372/pedia_background_r2nel9.jpg">-->
+  <div class="body h-12 overflow-x-auto">
 
-  <div class="lg:static px-12 lg:px-24 2xl:px-36 ">
+
     <div v-if="content_detail_state.main_category"
-         class="absolute md:block breadcrumbs text-md py-4 bg-base-100 w-full z-10 lg:w-fit lg:bg-transparent">
+         class="absolute lg:block breadcrumbs text-md p-4 bg-base-100 w-full z-10 px-12 lg:px-24 2xl:px-36">
       <ul>
         <li>
-          <p class="hover:underline underline-offset-2 hover:text-base-300 cursor-pointer rounded-md"
+          <p class="hover:underline underline-offset-2 hover:text-base-300 cursor-pointer "
              @click="back_to_pedia">
             回到首頁
           </p>
         </li>
         <li v-if="content_detail_state.sub_category&&content_detail_state.main_category">
-          <p class="hover:underline underline-offset-2 hover:text-base-300 cursor-pointer rounded-md"
+          <p class="hover:underline underline-offset-2 hover:text-base-300 cursor-pointer "
              @click="back_to_main_category">
             {{ content_detail_state.main_category?.title }}
           </p>
         </li>
         <li v-if="content_detail_state.chado_content&&content_detail_state.sub_category">
-          <p class="hover:underline underline-offset-2 hover:text-base-300 cursor-pointer rounded-md"
+          <p class="hover:underline underline-offset-2 hover:text-base-300 cursor-pointer "
              @click="back_to_sub_category">
             {{ content_detail_state.sub_category?.title }}
           </p>
@@ -176,36 +176,42 @@ function back_to_sub_category() {
       </ul>
     </div>
 
+    <div class="lg:static px-12 lg:px-24 2xl:px-36 ">
 
-    <categories-view
-      class="pt-16 lg:pt-20"
-      :class="{
+
+      <categories-view
+          class="pt-16 lg:pt-20"
+          :class="{
             'block':!component_state.is_show_content_detail,
             'hidden':component_state.is_show_content_detail,
         }"
-      @click_sub_category="click_sub_category"
-      @click_main_category="click_main_category"
-      @click_chado_content="click_chado_content"
-      :main_categories="category_state.show_main_categories"
-      :sub_categories="category_state.show_sub_categories"
-      :chado_contents="category_state.show_chado_contents"
-      :main_category="content_detail_state.main_category"
-      :sub_category="content_detail_state.sub_category"
-    />
-    <content-detail-view
-      class="pt-16 lg:pt-20"
-      :class="{
+          @click_sub_category="click_sub_category"
+          @click_main_category="click_main_category"
+          @click_chado_content="click_chado_content"
+          :main_categories="category_state.show_main_categories"
+          :sub_categories="category_state.show_sub_categories"
+          :chado_contents="category_state.show_chado_contents"
+          :main_category="content_detail_state.main_category"
+          :sub_category="content_detail_state.sub_category"
+      />
+      <content-detail-view
+          class="pt-16 lg:pt-20"
+          :class="{
             'block':component_state.is_show_content_detail,
             'hidden':!component_state.is_show_content_detail
         }"
-      v-if="component_state.is_show_content_detail"
-      :chado_content="content_detail_state.chado_content"
-      :main_category="content_detail_state.main_category"
-      :sub_category="content_detail_state.sub_category"
-    />
+          v-if="component_state.is_show_content_detail"
+          :chado_content="content_detail_state.chado_content"
+          :main_category="content_detail_state.main_category"
+          :sub_category="content_detail_state.sub_category"
+      />
+    </div>
   </div>
 </template>
 
-<style>
+<style scoped>
+.body{
+  height: 90vh;
+}
 
 </style>
