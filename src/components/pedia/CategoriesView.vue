@@ -24,13 +24,12 @@ const props = defineProps<{
         <div  class="xl:absolute xl:w-1/5">
           <div v-if="main_category">
             <p class="text-2xl font-bold"> {{ props.main_category.title }} </p>
-            <div class="divider"></div>
             <p class="text-lg py-2"> {{ props.main_category.desc }} </p>
           </div>
+          <div class="divider"></div>
 
           <div v-if="sub_category" class="py-4">
             <p class="text-2xl font-bold"> {{ props.sub_category.title }} </p>
-            <div class="divider"></div>
             <p class="text-lg py-2"> {{ props.sub_category.desc }} </p>
           </div>
         </div>

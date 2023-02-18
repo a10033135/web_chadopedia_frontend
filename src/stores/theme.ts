@@ -6,7 +6,7 @@ import type {VueCookies} from "vue-cookies";
 export const useThemeStore = defineStore('theme', {
     state: () => {
         return {
-            value: theme_utils.dark,
+            value: theme_utils.light,
         }
     },
     getters: {
@@ -16,10 +16,17 @@ export const useThemeStore = defineStore('theme', {
         }
     },
     actions: {
-        set_theme_utils(theme: string) {
-            this.value = theme
+        toggle_theme() {
+            let new_theme = ''
+            if (this.value == theme_utils.light) {
+                new_theme = theme_utils.dark
+            } else {
+                new_theme = theme_utils.light
+            }
+            this.value = new_theme
             const $cookies = inject<VueCookies>('$cookies');
-            $cookies?.set('theme', theme)
+            $cookies?.set('theme', new_theme)
+            console.log('new_theme', new_theme)
         },
 
     }

@@ -5,14 +5,16 @@ import FooterView from "@/components/FooterView.vue";
 
 const router = useRouter();
 
+const is_vertical = false
+
 function click_start() {
   router.push('/pedia')
 }
 </script>
 
 <template>
-  <div class="body">
-    <div class="hero xl:h-full">
+  <div class="body overflow-x-auto">
+    <div class="hero h-fit lg:h-full py-12 ">
       <div class="hero-content flex-col xl:flex-row ">
         <div>
           <h1 class="text-4xl font-bold">日本茶道學習第一站。</h1>
@@ -27,13 +29,14 @@ function click_start() {
 
       </div>
     </div>
-    <footer-view/>
+    <footer-view class="bg-base-100" :is_vertical="true"/>
   </div>
 
 </template>
 
 
 <style scoped>
-
-
+.body{
+  height: 90vh;
+}
 </style>
