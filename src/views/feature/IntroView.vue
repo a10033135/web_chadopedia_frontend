@@ -19,7 +19,7 @@ function click_start() {
         <div>
           <h1 class="text-4xl font-bold">日本茶道學習第一站。</h1>
           <p class="xl:text-lg py-6">
-            茶杓銘、季語、家元等必備術語日文念法通通有，分門別類簡單好查詢，圖文介紹好理解。日本茶道百科－Chadopedia分享給您最正確的日式茶道知識與風雅趣聞。</p>
+            茶杓銘、季語、家元等必備術語日文念法通通有，分門別類簡單好查詢，圖文介紹好理解。茶道事典百科－Chadopedia分享給您最正確的日式茶道知識與風雅趣聞。</p>
           <button class="hidden xl:block ease-in duration-1000 btn btn-primary" @click="click_start">Get Started
           </button>
         </div>
