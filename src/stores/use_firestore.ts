@@ -30,7 +30,7 @@ export const useFirestore = defineStore('firestore_store', {
         },
         async update_chado_contents(firestore: Firestore) {
             console.log('update_chado_categories', 'start')
-            const q = await getDocs(collection(firestore, 'ChadoContent'))
+            const q = await getDocs(query(collection(firestore, 'ChadoContent'),orderBy('update_time',"asc")))
             this.chado_contents = q.docs.map(docs2ChadoContent)
         }
     }
