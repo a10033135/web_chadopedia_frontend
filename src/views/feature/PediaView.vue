@@ -104,13 +104,13 @@ async function update_query_for_show(url_query: { main_id: string | null, sub_id
   } else if (url_query.main_id && url_query.sub_id) {
     category_state.show_main_categories = [];
     category_state.show_sub_categories = [];
-    const chado_contents = await getDocs(query(query(query(query(collection(firestore, chado_content_name), where("enable", "==", true)), where("sub_categories", "array-contains", url_query.sub_id)), orderBy("update_time", "asc")), orderBy("has_image", "asc")));
+    const chado_contents = await getDocs(query(query(query(collection(firestore, chado_content_name), where("enable", "==", true)), where("sub_categories", "array-contains", url_query.sub_id)), orderBy("update_time", "desc")));
     category_state.show_chado_contents = chado_contents.docs.map(docs2MainCategory).map(value => {
       return new CategoryItem(value.id, value.title, value.desc, `${genChadoContentPath(value.id)}`, value.has_image);
     });
   } else if (url_query.main_id) {
     category_state.show_main_categories = [];
-    const chado_contents = await getDocs(query(query(query(query(collection(firestore, chado_content_name), where("enable", "==", true)), where("main_categories", "array-contains", url_query.main_id)), orderBy("update_time", "asc")), orderBy("has_image", "asc")));
+    const chado_contents = await getDocs(query(query(query(collection(firestore, chado_content_name), where("enable", "==", true)), where("main_categories", "array-contains", url_query.main_id)), orderBy("update_time", "desc")));
     category_state.show_chado_contents = chado_contents.docs.map(doc2ChadoContent).map(value => {
       return new CategoryItem(value.id, value.title, value.desc, `${genChadoContentPath(value.id)}`, value.has_image);
     });
