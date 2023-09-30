@@ -1,14 +1,13 @@
 <script lang="ts" setup>
 
-import {AdvancedImage} from "@cloudinary/vue";
-import {cld} from "@/plugins/cloudinary";
-import {thumbnail} from "@cloudinary/url-gen/actions/resize";
-import {focusOn} from "@cloudinary/url-gen/qualifiers/gravity";
-import {FocusOn} from "@cloudinary/url-gen/qualifiers/focusOn";
+import { AdvancedImage } from "@cloudinary/vue";
+import { cld } from "@/plugins/cloudinary";
+import { thumbnail } from "@cloudinary/url-gen/actions/resize";
+import { focusOn } from "@cloudinary/url-gen/qualifiers/gravity";
+import { FocusOn } from "@cloudinary/url-gen/qualifiers/focusOn";
 
-const param = defineProps(['category'])
-const image_url = cld.image(param.category.image_url).resize(thumbnail().width(250).height(250).gravity(focusOn(FocusOn.face())))
-
+const param = defineProps(["category"]);
+const image_url = cld.image(param.category.image_url).resize(thumbnail().width(250).height(250).gravity(focusOn(FocusOn.face())));
 
 </script>
 
@@ -25,10 +24,13 @@ const image_url = cld.image(param.category.image_url).resize(thumbnail().width(2
       <div v-if="param.category.has_image"
            class="h-32 aspect-square m-4">
         <AdvancedImage
-            :cld-img="image_url"/>
+          :cld-img="image_url" />
       </div>
 
     </div>
+
+    <img class="w-8 h-8 ml-auto mr-8" src="src/assets/icon/ic_click.png">
+
     <div class="divider"></div>
 
   </div>
