@@ -29,7 +29,7 @@ const image_url = cld.image(param.category.image_url).resize(thumbnail().width(2
 
     </div>
 
-    <img class="w-8 h-8 ml-auto mr-8" src="src/assets/icon/ic_click.png">
+    <img class="w-8 h-8 ml-auto mr-8" src="../../../public/icon/ic_click.png">
 
     <div class="divider"></div>
 
